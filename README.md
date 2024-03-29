@@ -43,6 +43,23 @@ Amazon EC2 - Amazon Elastic Compute Cloud
 Amazon Elastic Beanstalk - End-to-end web application management.
   - its an easy-to-use service for deploying and scaling web applications and services developed with Java,.NET, PHP, Node.js, Python, Ruby, Go, and Docker.
 
+Create environment: Must create environment, from environment select Web server environment in Environment tier.
+
+  - name your application (something like brandon-gui)
+  - will auto create an environment name
+  - choose Node.js as your platform
+  - In Application code, choose upload your code.
+    - Version label enter 1
+    - select local file
+      - Must create a Archive.zip file containing the file in your local repo (I did it with no README).
+  - In Presets, make sure to select Single instace(free tier eligible)
+
+    - In Configure service access make sure that you select existing service role
+      - make sure that aws-elasticbeanstalk-service-role is autopopulating in Existing service roles
+      - make sure that aws-elasticbeanstalk-ec2-role is autopopulating in EC@ instanc profile
+  - Hit next for all the other options
+
+
 When you create a Beanstalk app in the terminal write aws configure (need to add the AWS secret access key and the access key id)
 
 eb init (select default 3 for region, select new application, select y if using Node.js, select n for CodeCommit, select n for SSH instance)
@@ -59,6 +76,11 @@ to grab credentials and past in settings, secrets and variables, and actions
 use: cat ~/.aws/credentials
 
 then copy exact key name in workflow file and the actual keys from the terminal
+
+Make sure to change the yml's:
+
+        application_name: express-gui-test (application name on beanstalk)
+        environment_name: express-cli-env (environment name on beanstalk)
 
 http://express-cli-env.eba-czbweubi.us-west-2.elasticbeanstalk.com/
 
